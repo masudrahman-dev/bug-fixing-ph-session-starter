@@ -47,14 +47,23 @@ const mealIngredientsInfo = (mealItemName) => {
 //meal ingredients details information
 
 const displayDetails = (mealItemDetails) => {
-  //   console.log('mealItemDetails :>> ', mealItemDetails);
+  // console.log('mealItemDetails :>> ', mealItemDetails);
   const items = mealItemDetails[0];
   const mealItemsInformation = document.getElementById('mealItemsInfo');
   mealItemsInformation.innerHTML = '';
-  const strIngredientKeys = Object.keys(items).filter((key) =>
-    key.startsWith('strIngredient')
-  );
-  //   console.log('strIngredientKeys :>> ', strIngredientKeys);
+  //   const strIngredientKeys = Object.keys(items).filter((key) =>
+  //     key.startsWith('strIngredient')
+  //   );
+  //   const strIngredientValues = Object.values(items).filter((key) =>
+  //     key.startsWith('strIngredient')
+  //   );
+  // console.log('strIngredientKeys :>> ', strIngredientKeys);
+  // console.log('strIngredientValues :>> ', strIngredientValues);
+
+  const strIngredientValues = Object.entries(items)
+    .filter(([key, value]) => key.startsWith('strIngredient'))
+    .map(([key, value]) => value);
+  console.log(strIngredientValues);
   const mealItemsInformations = document.createElement('div');
   mealItemsInformations.className = 'ingredients-info';
   // console.log(items.strMeal);
@@ -62,20 +71,62 @@ const displayDetails = (mealItemDetails) => {
 <img src="${items.strMealThumb}">
 <h1>${items.strMeal}</h1>
 <h5>Ingredients</h5>
-<ul id="ingredients">
+<ol id="ingredients" >
 
-</ul>
+</ol>
 `;
-  mealItemsInformation.appendChild(mealItemsInformations);
-  for (let i = 0; i <= mealItemDetails.length; i++) {
-    for (const key of strIngredientKeys) {
-      if (items[key] !== '' && items[key] !== null) {
-        const Ingredients = document.getElementById('ingredients');
-        const li = document.createElement('li');
-        li.innerHTML = `<li>${items[key]}</li>`;
-        // console.log(`<li>${items[key]}</li>`);
-        Ingredients.appendChild(li);
-      }
-    }
+  {
+    /* <ul id="ingredients" style=" list-style-type: none;">
+
+</ul> */
   }
+  mealItemsInformation.appendChild(mealItemsInformations);
+  let j = 1;
+  strIngredientValues.forEach((item) => {
+    console.log('item :>> ', item, j++);
+    if (item) {
+      const Ingredients = document.getElementById('ingredients');
+      const li = document.createElement('li');
+      li.innerHTML = `<li >${item}</li>`;
+      // console.log(`<li>${items[key]}</li>`);
+      Ingredients.appendChild(li);
+    }
+  });
+  //   for (let i = 0; i <= 0; i++) {
+  //     // for (const key of strIngredientKeys) {
+  //     //   if (items[key] !== '' && items[key] !== null) {
+  //     //     const Ingredients = document.getElementById('ingredients');
+  //     //     const li = document.createElement('li');
+  //     //     li.innerHTML = `<li>${items[key]}</li>`;
+  //     //     // console.log(`<li>${items[key]}</li>`);
+  //     //     Ingredients.appendChild(li);
+  //     //   }
+  //     // }
+  //     // let j = 1
+  //     // strIngredientValues.forEach(item => {
+  //     //     console.log('item :>> ', item, j++);
+  //     //     if (item !== '' && item !== null) {
+  //     //         const Ingredients = document.getElementById('ingredients');
+  //     //         const li = document.createElement('li');
+  //     //         li.innerHTML = `<li >${item}</li>`;
+  //     //         // console.log(`<li>${items[key]}</li>`);
+  //     //         Ingredients.appendChild(li);
+  //     //       }
+  //     // });
+  //     // for (const key of strIngredientKeys) {
+  //     //   if (items[key] !== '' && items[key] !== null) {
+  //     //     const Ingredients = document.getElementById('ingredients');
+  //     //     const li = document.createElement('li');
+  //     //     li.innerHTML = `<li>${items[key]}</li>`;
+  //     //     // console.log(`<li>${items[key]}</li>`);
+  //     //     Ingredients.appendChild(li);
+  //     //   }
+  //     // }
+  //   }
 };
+
+// const strIngredientValues = Object.entries(meal)
+//   .filter(([key, value]) => key.startsWith("strIngredient"))
+//   .map(([key, value]) => value);
+
+// console.log(strIngredientValues);
