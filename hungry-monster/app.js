@@ -79,18 +79,19 @@ const displayDetails = (mealItemDetails) => {
   let j = 1;
   strIngredientValues.forEach((item) => {
     console.log('item :>> ', item, j++);
-    // if (item) {
-    //   const Ingredients = document.getElementById('ingredients');
-    //   const li = document.createElement('li');
-    //   li.innerHTML = `<li >${item}</li>`;
-    //   Ingredients.appendChild(li);
-    // }
     if (item) {
-      console.log('item :>> ', item);
       const Ingredients = document.getElementById('ingredients');
+      Ingredients.Ingredients += `<li >${item}</li>`;
       const li = document.createElement('li');
-      li.textContent = item;
+      li.innerHTML = item;
       Ingredients.appendChild(li);
     }
+    // if (item) {
+    //   console.log('item :>> ', item);
+    //   const Ingredients = document.getElementById('ingredients');
+    //   const li = document.createElement('li');
+    //   li.textContent = item;
+    //   Ingredients.appendChild(li);
+    // }
   });
 };
