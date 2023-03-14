@@ -11,7 +11,7 @@ const searchFood = () => {
       //   console.log('data.meals :>> ', data.meals);
     });
 };
-// searchFood();
+searchFood();
 const displayMealInfo = (mealData) => {
   const mealContainer = document.getElementById('mealCard');
   mealData.forEach((item) => {
@@ -43,24 +43,13 @@ const mealIngredientsInfo = (mealItemName) => {
       displayDetails(data.meals);
     });
 };
-// mealIngredientsInfo()
-//meal ingredients details information
 
 const displayDetails = (mealItemDetails) => {
   //   console.log('mealItemDetails :>> ', mealItemDetails);
   const items = mealItemDetails[0];
-  console.log('items :>> ', items);
+  // console.log('items :>> ', items);
   const mealItemsInformation = document.getElementById('mealItemsInfo');
   mealItemsInformation.innerHTML = '';
-  //   const strIngredientKeys = Object.keys(items).filter((key) =>
-  //     key.startsWith('strIngredient')
-  //   );
-  //   const strIngredientValues = Object.values(items).filter((key) =>
-  //     key.startsWith('strIngredient')
-  //   );
-  // console.log('strIngredientKeys :>> ', strIngredientKeys);
-  // console.log('strIngredientValues :>> ', strIngredientValues);
-
   const strIngredientValues = Object.entries(items)
     .filter(([key, value]) => key.startsWith('strIngredient'))
     .map(([key, value]) => value);
@@ -87,9 +76,9 @@ const displayDetails = (mealItemDetails) => {
 </ul> */
   }
   mealItemsInformation.appendChild(mealItemsInformations);
-  // let j = 1;
+  let j = 1;
   strIngredientValues.forEach((item) => {
-    // console.log('item :>> ', item, j++);
+    console.log('item :>> ', item, j++);
     // if (item) {
     //   const Ingredients = document.getElementById('ingredients');
     //   const li = document.createElement('li');
@@ -97,13 +86,11 @@ const displayDetails = (mealItemDetails) => {
     //   Ingredients.appendChild(li);
     // }
     if (item) {
+      console.log('item :>> ', item);
       const Ingredients = document.getElementById('ingredients');
       const li = document.createElement('li');
       li.textContent = item;
       Ingredients.appendChild(li);
     }
   });
-
 };
-
-
