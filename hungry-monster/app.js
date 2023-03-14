@@ -11,7 +11,7 @@ const searchFood = () => {
       //   console.log('data.meals :>> ', data.meals);
     });
 };
-searchFood();
+// searchFood();
 const displayMealInfo = (mealData) => {
   const mealContainer = document.getElementById('mealCard');
   mealData.forEach((item) => {
@@ -87,52 +87,23 @@ const displayDetails = (mealItemDetails) => {
 </ul> */
   }
   mealItemsInformation.appendChild(mealItemsInformations);
-  let j = 1;
+  // let j = 1;
   strIngredientValues.forEach((item) => {
-    console.log('item :>> ', item, j++);
+    // console.log('item :>> ', item, j++);
+    // if (item) {
+    //   const Ingredients = document.getElementById('ingredients');
+    //   const li = document.createElement('li');
+    //   li.innerHTML = `<li >${item}</li>`;
+    //   Ingredients.appendChild(li);
+    // }
     if (item) {
       const Ingredients = document.getElementById('ingredients');
       const li = document.createElement('li');
-      li.innerHTML = `<li >${item}</li>`;
-      // console.log(`<li>${items[key]}</li>`);
+      li.textContent = item;
       Ingredients.appendChild(li);
     }
   });
-  //   for (let i = 0; i <= 0; i++) {
-  //     // for (const key of strIngredientKeys) {
-  //     //   if (items[key] !== '' && items[key] !== null) {
-  //     //     const Ingredients = document.getElementById('ingredients');
-  //     //     const li = document.createElement('li');
-  //     //     li.innerHTML = `<li>${items[key]}</li>`;
-  //     //     // console.log(`<li>${items[key]}</li>`);
-  //     //     Ingredients.appendChild(li);
-  //     //   }
-  //     // }
-  //     // let j = 1
-  //     // strIngredientValues.forEach(item => {
-  //     //     console.log('item :>> ', item, j++);
-  //     //     if (item !== '' && item !== null) {
-  //     //         const Ingredients = document.getElementById('ingredients');
-  //     //         const li = document.createElement('li');
-  //     //         li.innerHTML = `<li >${item}</li>`;
-  //     //         // console.log(`<li>${items[key]}</li>`);
-  //     //         Ingredients.appendChild(li);
-  //     //       }
-  //     // });
-  //     // for (const key of strIngredientKeys) {
-  //     //   if (items[key] !== '' && items[key] !== null) {
-  //     //     const Ingredients = document.getElementById('ingredients');
-  //     //     const li = document.createElement('li');
-  //     //     li.innerHTML = `<li>${items[key]}</li>`;
-  //     //     // console.log(`<li>${items[key]}</li>`);
-  //     //     Ingredients.appendChild(li);
-  //     //   }
-  //     // }
-  //   }
+
 };
 
-// const strIngredientValues = Object.entries(meal)
-//   .filter(([key, value]) => key.startsWith("strIngredient"))
-//   .map(([key, value]) => value);
 
-// console.log(strIngredientValues);
