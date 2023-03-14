@@ -165,5 +165,5 @@ function search() {
 }
 
 // slide img first time function a asle indexOf -1 theke keno???
-// unselect korle er somoy filter fuction ti kivabe kaj korche
+// unselect korle er somoy filter fuction ti kivabe kaj korche ??
 
