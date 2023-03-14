@@ -39,14 +39,22 @@ const getImages = (query) => {
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
+  // console.log(element);
+
+  // console.log(img);
   element.classList.add('added');
 
   let item = sliders.indexOf(img);
+  console.log('item :>> ', item);
   if (item === -1) {
     sliders.push(img);
   } else {
-    alert('Hey, Already added !');
+    // alert('Hey, Already added !');
+    // sliders.pop(img);
+    sliders = sliders.filter((slide) => slide !== img);
+    element.classList.remove('added');
   }
+  console.log(sliders);
 };
 let timer;
 const createSlider = () => {
@@ -128,7 +136,7 @@ sliderBtn.addEventListener('click', function () {
 window.addEventListener('keydown', function (event) {
   if (event.key === 'Enter' || event.keyCode === 13) {
     // check if Enter key was pressed
-    console.log(event.key);
+    // console.log(event.key);
     event.preventDefault(); // prevent form submission
     search(); // call your search function
   }
@@ -142,5 +150,9 @@ function search() {
   // console.log('search :>> ', search.value);
   getImages(search.value);
   sliders.length = 0;
-  console.log('enter to search');
+  // console.log('enter to search');
 }
+
+
+// slide img first time function a asle indexOf -1 theke keno???
+// unselect korle er somoy filter fuction ti kivabe kaj korche
