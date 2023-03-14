@@ -47,8 +47,9 @@ const mealIngredientsInfo = (mealItemName) => {
 //meal ingredients details information
 
 const displayDetails = (mealItemDetails) => {
-  // console.log('mealItemDetails :>> ', mealItemDetails);
+  //   console.log('mealItemDetails :>> ', mealItemDetails);
   const items = mealItemDetails[0];
+  console.log('items :>> ', items);
   const mealItemsInformation = document.getElementById('mealItemsInfo');
   mealItemsInformation.innerHTML = '';
   //   const strIngredientKeys = Object.keys(items).filter((key) =>
@@ -63,13 +64,18 @@ const displayDetails = (mealItemDetails) => {
   const strIngredientValues = Object.entries(items)
     .filter(([key, value]) => key.startsWith('strIngredient'))
     .map(([key, value]) => value);
-  console.log(strIngredientValues);
+  //   console.log(strIngredientValues);
   const mealItemsInformations = document.createElement('div');
   mealItemsInformations.className = 'ingredients-info';
   // console.log(items.strMeal);
   mealItemsInformations.innerHTML = `
 <img src="${items.strMealThumb}">
 <h1>${items.strMeal}</h1>
+<p>${
+    items.strInstructions.length >= 100
+      ? items.strInstructions.slice(0, 100) + ' ....read more'
+      : items.strInstructions
+  }</p>
 <h5>Ingredients</h5>
 <ol id="ingredients" >
 
