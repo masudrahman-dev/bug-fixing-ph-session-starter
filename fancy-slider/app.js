@@ -4,6 +4,7 @@ const galleryHeader = document.querySelector('.gallery-header');
 const searchBtn = document.getElementById('search-btn');
 const sliderBtn = document.getElementById('create-slider');
 const sliderContainer = document.getElementById('sliders');
+const errorMessage = document.getElementById('error-message');
 // selected image
 let sliders = [];
 
@@ -24,7 +25,6 @@ const showImages = (images) => {
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div);
   });
-  document.getElementById('search').value = '';
 };
 
 const getImages = (query) => {
@@ -32,7 +32,14 @@ const getImages = (query) => {
     `https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`
   )
     .then((response) => response.json())
-    .then((data) => showImages(data.hits))
+    .then((data) => {
+      if (data.hits.length > 0) {
+        showImages(data.hits);
+      } else {
+        const imagesArea = document.querySelector('.images');
+        imagesArea.style.display = 'none';
+      }
+    })
     .catch((err) => console.log(err));
 };
 
@@ -147,12 +154,16 @@ function search() {
   document.querySelector('.main').style.display = 'none';
   clearInterval(timer);
   const search = document.getElementById('search');
-  // console.log('search :>> ', search.value);
+  if (search.value.length === 0) {
+    imagesArea.style.display = 'none';
+    // errorMessage.innerText = 'Invalid search';
+    return;
+  }
   getImages(search.value);
   sliders.length = 0;
-  // console.log('enter to search');
+  search.value = '';
 }
-
 
 // slide img first time function a asle indexOf -1 theke keno???
 // unselect korle er somoy filter fuction ti kivabe kaj korche
+
