@@ -2,13 +2,11 @@
 const searchFood = () => {
   const searchField = document.getElementById('mealInput');
   const searchData = searchField.value;
-//   console.log('searchData :>> ', searchData);
+  //   console.log('searchData :>> ', searchData);
   const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchData}`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-    //   console.log('data :>> ', data.meals);
-    //   displayMealInfo(searchData)
       displayMealInfo(data.meals);
     });
 };
@@ -26,7 +24,7 @@ const displayMealInfo = (mealData) => {
         `;
     foodItemName.innerHTML = mealInformation;
     foodItemName.addEventListener('click', function () {
-    //   console.log('item.idMeal :>> ', item);
+      //   console.log('item.idMeal :>> ', item);
       mealIngredientsInfo(item.idMeal);
     });
     mealContainer.appendChild(foodItemName);
@@ -40,7 +38,7 @@ const mealIngredientsInfo = (mealItemName) => {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-    //   console.log(data.meals[0]);
+      //   console.log(data.meals[0]);
       displayDetails(data.meals);
     });
 };
@@ -48,41 +46,22 @@ const mealIngredientsInfo = (mealItemName) => {
 //meal ingredients details information
 
 const displayDetails = (mealItemDetails) => {
-    console.log('mealItemDetails :>> ', mealItemDetails);
+  console.log('mealItemDetails :>> ', mealItemDetails);
   const mealItemsInformation = document.getElementById('mealItemsInfo');
   mealItemDetails.forEach((items) => {
     const mealItemsInformations = document.createElement('div');
     mealItemsInformations.className = 'ingredients-info';
-    console.log(items.strMeal);
-    const itemsName = document.createElement('h1');
-    const ingredients = document.createElement('h5');
-    ingredients.innerText = 'Ingredients';
-    itemsName.innerText = items.strMeal;
-    const ul = document.createElement('ul');
-    const imgUrl = document.createElement('img');
-    imgUrl.src = items.strMealThumb;
-    mealItemsInformations.appendChild(imgUrl);
-    const li = `
-        
-         <li>${items.strIngredient1}</li>
-         <li>${items.strIngredient2}</li>
-         <li>${items.strIngredient3}</li>
-         <li>${items.strIngredient4}</li>
-         <li>${items.strIngredient5}</li>
-         <li>${items.strIngredient6}</li>
-         <li>${items.strIngredient7}</li>
-         <li>${items.strIngredient8}</li>
-         <li>${items.strIngredient9}</li>
-         <li>${items.strIngredient10}</li>
-         <li>${items.strIngredient11}</li>
-         <li>${items.strIngredient12}</li>
-         <li>${items.strIngredient13}</li>
-        `;
-    ul.innerHTML = li;
-    mealItemsInformations.appendChild(itemsName);
-    mealItemsInformations.appendChild(ingredients);
-    mealItemsInformations.appendChild(ul);
+    // console.log(items.strMeal);
+    mealItemsInformations.innerHTML = `
+    <img src="${items.strMealThumb}">
+    <h1>${items.strMeal}</h1>
+    <h5>Ingredients</h5>
+    <ul>
+    <li>${items.strIngredient1}</li>
+    </ul>
+    `;
     mealItemsInformation.appendChild(mealItemsInformations);
+
   });
 };
 // displayDetails()
