@@ -8,9 +8,10 @@ const searchFood = () => {
     .then((res) => res.json())
     .then((data) => {
       displayMealInfo(data.meals);
+      //   console.log('data.meals :>> ', data.meals);
     });
 };
-searchFood()
+searchFood();
 const displayMealInfo = (mealData) => {
   const mealContainer = document.getElementById('mealCard');
   mealData.forEach((item) => {
@@ -46,22 +47,35 @@ const mealIngredientsInfo = (mealItemName) => {
 //meal ingredients details information
 
 const displayDetails = (mealItemDetails) => {
-  console.log('mealItemDetails :>> ', mealItemDetails);
+  //   console.log('mealItemDetails :>> ', mealItemDetails);
+  const items = mealItemDetails[0];
   const mealItemsInformation = document.getElementById('mealItemsInfo');
-  mealItemDetails.forEach((items) => {
-    const mealItemsInformations = document.createElement('div');
-    mealItemsInformations.className = 'ingredients-info';
-    // console.log(items.strMeal);
-    mealItemsInformations.innerHTML = `
-    <img src="${items.strMealThumb}">
-    <h1>${items.strMeal}</h1>
-    <h5>Ingredients</h5>
-    <ul>
-    <li>${items.strIngredient1}</li>
-    </ul>
-    `;
-    mealItemsInformation.appendChild(mealItemsInformations);
+  mealItemsInformation.innerHTML = '';
+  const strIngredientKeys = Object.keys(items).filter((key) =>
+    key.startsWith('strIngredient')
+  );
+  //   console.log('strIngredientKeys :>> ', strIngredientKeys);
+  const mealItemsInformations = document.createElement('div');
+  mealItemsInformations.className = 'ingredients-info';
+  // console.log(items.strMeal);
+  mealItemsInformations.innerHTML = `
+<img src="${items.strMealThumb}">
+<h1>${items.strMeal}</h1>
+<h5>Ingredients</h5>
+<ul id="ingredients">
 
-  });
+</ul>
+`;
+  mealItemsInformation.appendChild(mealItemsInformations);
+  for (let i = 0; i <= mealItemDetails.length; i++) {
+    for (const key of strIngredientKeys) {
+      if (items[key] !== '' && items[key] !== null) {
+        const Ingredients = document.getElementById('ingredients');
+        const li = document.createElement('li');
+        li.innerHTML = `<li>${items[key]}</li>`;
+        // console.log(`<li>${items[key]}</li>`);
+        Ingredients.appendChild(li);
+      }
+    }
+  }
 };
-// displayDetails()
